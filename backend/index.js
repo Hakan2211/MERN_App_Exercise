@@ -7,12 +7,17 @@ import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobsRouter.js";
 import connectDB from "./db/connect.js";
 import cors from "cors";
+import morgan from "morgan";
 dotenv.config();
 
 const app = express();
 
 // Middleware
 app.use(cors());
+
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
+}
 
 app.use(express.json());
 

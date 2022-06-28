@@ -6,16 +6,17 @@ import dotenv from "dotenv";
 import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobsRouter.js";
 import connectDB from "./db/connect.js";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
 
 // Middleware
+app.use(cors());
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  throw new Error("error");
   res.send("Welcome");
 });
 

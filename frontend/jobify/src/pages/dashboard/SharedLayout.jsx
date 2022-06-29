@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import styled from "styled-components";
+import { NavBar, SmallSideBar, BigSideBar } from "../../components";
 
 const Wrapper = styled.section`
   .dashboard {
@@ -24,11 +25,16 @@ const Wrapper = styled.section`
 const SharedLayout = () => {
   return (
     <Wrapper>
-      <nav>
-        <Link to="add-job">Add Job</Link>
-        <Link to="all-jobs">All Jobs</Link>
-      </nav>
-      <Outlet />
+      <main className="dashboard">
+        <SmallSideBar />
+        <BigSideBar />
+        <div>
+          <NavBar />
+          <div className="dashboard-page">
+            <Outlet />
+          </div>
+        </div>
+      </main>
     </Wrapper>
   );
 };

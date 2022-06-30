@@ -8,6 +8,7 @@ import jobsRouter from "./routes/jobsRouter.js";
 import connectDB from "./db/connect.js";
 import cors from "cors";
 import morgan from "morgan";
+import authenticateUser from "./middleware/auth.js";
 dotenv.config();
 
 const app = express();
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRouter);
-app.use("/api/jobs", jobsRouter);
+app.use("/api/jobs", authenticateUser, jobsRouter);
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleware);
